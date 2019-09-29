@@ -5,49 +5,62 @@ import HandlerButton from './HandlerButton';
 import Note from './Note';
 
 class App extends Component {
+
+	host = "http://localhost:3002/"
+	apiSaveNotes = "save-notes";
+	apiLoadNotes = "get-notes?user=";
+	user = "defaultUser";
+
 	state = {
-		notes: [],
-		createNoteTitle: '',
-		createNoteContent: ''
+		notes: []
 	}
 
-	componentWillMount() {
-
+	componentDidMount() {
+		this.loadNotes();
+		window.addEventListener("beforeunload", this.saveNotes)
 	}
 
 	componentWillUnMount() {
-
+		window.removeEventListener("beforeunload", this.saveNotes)
 	}
 
-	addNote = () => {
+	addNote = (note) => {
 		let notes = this.state.notes;
-		notes.push({
-			title: this.state.createNoteTitle,
-			content: this.state.createNoteContent
-		})
+		notes.push(note);
 
-		this.setState({notes})
+		this.setState({ notes });
 	}
 
-	createNoteTitleChange = (title) => {
-		this.setState({
-			createNoteTitle: title
+	removeNote = (id) => {
+		let notes = this.state.notes.filter(note => note.id !== id);
+		this.setState({ notes });
+	}
+
+	clearNotes = () => {
+		this.setState({ notes: [] });
+	}
+
+	saveNotes = () => {
+		fetch(this.host + this.apiSaveNotes, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user: this.user,
+				data: this.state.notes
+			})
 		})
 	}
 
-	createNoteContentChange = (content) => {
-		this.setState({
-			createNoteContent: content
-		})
-	}
-
-	generateUUID() {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-        .replace(/[xy]/g,
-            (c, r) => (
-                'x' == c ? (r = Math.random() * 16 | 0) : (r & 0x3 | 0x8)
-            ).toString(16)
-        );
+	loadNotes = () => {
+		fetch(this.host + this.apiLoadNotes + this.user, {
+			method: 'GET'
+		}).then((response) => {
+			response.json().then(data => {
+				this.setState({ notes: data });
+			})
+		});
 	}
 
 	render() {
@@ -59,12 +72,11 @@ class App extends Component {
 
 				<section className="note-creation mdl-layout">
 					<h3>Create new note here.</h3>
-					<CreateNote onTitleChange={this.createNoteTitleChange} onContentChange={this.createNoteContentChange} />
+					<CreateNote handleSubmit={this.addNote} />
 				</section>
 
 				<section className="controls mdl-layout">
-					<HandlerButton id="add-note-button" content="Add" onClick={this.addNote}/>
-					<HandlerButton id="clear-notes-button" content="Clear" />
+					<HandlerButton id="clear-notes-button" content="Clear" onClick={this.clearNotes} />
 				</section>
 
 				<section className="notebook mdl-layout">
@@ -72,7 +84,7 @@ class App extends Component {
 					<div className="notebook-container" id="notebook-container">
 						{this.state.notes.map(
 							(note) => {
-								return <Note title={note.title} content={note.content}/>
+								return <Note key={note.id} id={note.id} title={note.title} content={note.content} onClick={this.removeNote} />
 							}
 						)}
 					</div>

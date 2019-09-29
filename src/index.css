@@ -116,3 +116,9 @@ section {
 .note-instance span {
 	overflow-wrap: break-word;
 }
+
+@media screen and (max-width: 1024px) {
+	.mdl-layout__header {
+		display: flex;
+	}
+}
