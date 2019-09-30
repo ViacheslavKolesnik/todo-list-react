@@ -20,12 +20,11 @@ export default class CreateNote extends Component {
         let pattern = new RegExp(/^(?!\s*$).+/);
         let isValid = pattern.test(textarea.value)
 
-        textarea.setCustomValidity(isValid ? "" : "Invalid format.");
+        textarea.setCustomValidity(isValid ? "" : "Please match the requested format.");
 
         isValid ?
             textarea.parentElement.classList.remove(window.MaterialTextfield.prototype.CssClasses_.IS_INVALID) :
             textarea.parentElement.classList.add(window.MaterialTextfield.prototype.CssClasses_.IS_INVALID);
-        // textarea.checkValidity();
 
         this.setState({
             [textarea.name]: textarea.value

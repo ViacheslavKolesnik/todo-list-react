@@ -1,0 +1,138 @@
+.login-bg {
+    display: flex;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-form {
+    width: 370px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 48px 40px 36px;
+}
+
+.title {
+    display: flex;
+    margin: 0 auto;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.title .blue {
+    color: #4285f4;
+}
+
+.title .red {
+    color: #ea4335;
+}
+
+.title .yellow {
+    color: #fbbc05;
+}
+
+.title .green {
+    color: #34a753;
+}
+
+.choose-account {
+    color: #202124;
+    font-size: 24px;
+    font-weight: 400;
+    display: flex;
+    margin: 0 auto;
+}
+
+.account-item-container {
+    padding: 24px 0 0;
+}
+
+.account-item {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.account-item:after {
+    border-bottom: 1px solid #dadce0;
+    content: '';
+    height: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.account-item .logo {
+    background-color: #8d6e63;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin: 0;
+    margin-right: 12px;
+    position: relative;
+}
+
+.account-item .logo span {
+    display: flex;
+    margin: auto;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+}
+
+.account-item .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-item .content .user {
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+
+.account-item .content .email {
+    color: #5f6368;
+    font-size: 12px;
+    margin: 0;
+    line-height: 15px;
+}
+
+/* footer {} */
+
+@media (min-width: 601px) {
+    .login-form {
+        height: auto;
+        min-height: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login-form {
+        width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+        border: none;
+    }
+}
+
+/* @media (min-width: 601px) {
+    footer {
+        height: 16.8px;
+        padding: 24px 0 0;
+        position: absolute;
+        width: 100%;
+    }
+} */

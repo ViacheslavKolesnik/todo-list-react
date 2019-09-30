@@ -3,8 +3,10 @@ import '../css/App.css';
 import CreateNote from './CreateNote';
 import HandlerButton from './HandlerButton';
 import Note from './Note';
+import Header from './Header';
+import Footer from './Footer';
 
-class App extends Component {
+export default class App extends Component {
 
 	host = "http://localhost:3002/"
 	apiSaveNotes = "save-notes";
@@ -66,9 +68,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<header className="mdl-layout__header">
-					<h2>Best notebook ever!</h2>
-				</header>
+				<Header/>
 
 				<section className="note-creation mdl-layout">
 					<h3>Create new note here.</h3>
@@ -90,12 +90,8 @@ class App extends Component {
 					</div>
 				</section>
 
-				<footer className="mdl-mega-footer">
-					<p className="rights">2019 © All rights reserved.</p>
-				</footer>
+				<Footer/>
 			</div>
 		);
 	}
 }
-
-export default App;
