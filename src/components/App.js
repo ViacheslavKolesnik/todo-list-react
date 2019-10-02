@@ -7,6 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 export default class App extends Component {
+	
 
 	host = "http://localhost:3002/"
 	apiSaveNotes = "save-notes";
@@ -18,7 +19,7 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		this.loadNotes();
+		// this.loadNotes();
 		window.addEventListener("beforeunload", this.saveNotes)
 	}
 
@@ -56,6 +57,7 @@ export default class App extends Component {
 	}
 
 	loadNotes = () => {
+		console.log(this.user);
 		fetch(this.host + this.apiLoadNotes + this.user, {
 			method: 'GET'
 		}).then((response) => {
@@ -66,6 +68,12 @@ export default class App extends Component {
 	}
 
 	render() {
+		const { params } = this.props.match;
+		let userParam = params.user;
+		this.user = userParam.substring(0, userParam.indexOf('@'));
+
+		this.loadNotes();
+
 		return (
 			<div>
 				<Header/>
