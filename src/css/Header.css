@@ -1,0 +1,16 @@
+header, .mdl-layout__header {
+	padding: 40px;
+}
+
+header, .mdl-layout__header h2 {
+	font-family: OpenSans-Semibold, serif;
+	display: flex;
+	margin: 0 auto;
+	text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+	.mdl-layout__header {
+		display: flex;
+	}
+}

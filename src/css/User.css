@@ -1,0 +1,61 @@
+.account-item {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.account-item:after {
+    border-bottom: 1px solid #dadce0;
+    content: '';
+    height: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.account-item:hover {
+    cursor: pointer;
+}
+
+.account-item .logo {
+    background-color: #8d6e63;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin: 0;
+    margin-right: 12px;
+    position: relative;
+}
+
+.account-item .logo span {
+    display: flex;
+    margin: auto;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    position: absolute;
+    left: 34%;
+    top: 20%;
+}
+
+.account-item .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-item .content .user {
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+
+.account-item .content .email {
+    color: #5f6368;
+    font-size: 12px;
+    margin: 0;
+    line-height: 15px;
+}

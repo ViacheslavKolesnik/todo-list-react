@@ -15,7 +15,6 @@ export default class Login extends Component {
 
     componentDidMount() {
         this.loadUsers();
-        console.log(this.state.users);
     }
 
     loadUsers = () => {
@@ -28,9 +27,8 @@ export default class Login extends Component {
         });
     }
 
-    login = (email) => {
-        console.log("Trying to redirect.");
-        this.props.history.push('/notebook/' + email);
+    login = (user) => {
+        this.props.history.push('/notebook/' + user);
     }
 
     render() {
@@ -48,7 +46,6 @@ export default class Login extends Component {
                         </p>
                         <p className="choose-account">Выберите аккаунт</p>
                         <div className="account-item-container">
-
                             {this.state.users.map(
                                 (user) => {
                                     return <User key={user.email} name={user.name} email={user.email} login={this.login} />

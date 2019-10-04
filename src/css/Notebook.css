@@ -1,0 +1,102 @@
+.mdl-layout {
+	width: unset;
+}
+
+section {
+	padding: 40px;
+	background: no-repeat fixed center;
+}
+
+.note-creation {
+	background-color: #c5c5c5;
+}
+
+.note-creation .note-instance {
+	border-color: #00bfa5
+}
+
+.controls {
+	background-color: darkgray;
+	display: flex;
+	flex-direction: row;
+}
+
+.controls button {
+	width: fit-content;
+	display: flex;
+	margin: 0 auto;
+}
+
+#add-note-button {
+	background-color: #4caf50;
+}
+
+#clear-notes-button {
+	background-color: #ff420e;
+}
+
+#logout-button {
+	background-color: #f78f00;
+}
+
+.notebook {
+	background-color: #939292;
+}
+
+.notebook .notebook-container {
+	min-height: 14.6vh;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.notebook .notebook-container .note-instance {
+	position: relative;
+	background-color: #c5c5c5;
+}
+
+.notebook .notebook-container .note-instance .remove-note {
+	height: 25px;
+	width: 25px;
+	min-width: unset;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.notebook .notebook-container .note-instance .remove-note p {
+	font-size: 26px;
+	transform: rotateZ(45deg);
+}
+
+.note-creation h3, .notebook h3 {
+	font-family: OpenSans-Semibold, serif;
+	display: flex;
+	margin: 0 auto;
+	padding: 25px;
+	text-align: center;
+}
+
+.note-instance {
+	display: flex;
+	margin: 20px auto;
+	padding: 25px;
+	border: 2px solid;
+	border-radius: 5px;
+	width: 200px;
+	flex-direction: column;
+}
+
+.note-instance .note-title {
+	font-family: OpenSans-Semibold, serif;
+	font-size: 18px;
+	margin-bottom: 20px;
+	background-color: #c5c5c5;
+	border: none;
+}
+
+.note-instance .note-content {
+	font-family: OpenSans-Regular, serif;
+	font-size: 14px;
+    background-color: #c5c5c5;
+    border: none;
+}

@@ -1,0 +1,21 @@
+.nf-background {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.nf-container {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    width: fit-content;
+    text-align: center;
+}
+
+.nf-container h1 {
+    font-size: 100px;
+}
+
+.nf-container h2 {
+    font-size: 60px;
+}

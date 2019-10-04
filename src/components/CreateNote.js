@@ -1,3 +1,5 @@
+import '../libs/material/material.min.css';
+import '../libs/material/material.min.js';
 import React, { Component } from 'react'
 
 export default class CreateNote extends Component {

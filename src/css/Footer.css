@@ -1,0 +1,11 @@
+footer {
+	padding: 40px;
+}
+
+footer .rights {
+	font-family: OpenSans-Regular, serif;
+	font-size: 14px;
+	display: flex;
+	margin: 0 auto;
+	width: fit-content;
+}

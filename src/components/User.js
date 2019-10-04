@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Login.css';
+import '../css/User.css';
 
 
 export default class User extends Component {
@@ -9,8 +9,8 @@ export default class User extends Component {
     }
 
     onClick = () => {
-        console.log("Clicked user.")
-        this.props.login(this.props.email);
+        let email = this.props.email;
+        this.props.login(email.substring(0, email.indexOf('@')));
     }
 
     render() {
