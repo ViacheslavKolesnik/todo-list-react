@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import CreateNote from './CreateNote';
 import HandlerButton from './HandlerButton';
 import Note from './Note';
@@ -10,20 +10,27 @@ import '../css/Notebook.css';
 
 export default class App extends Component {
 
+	constructor(props) {
+		super(props);
+		const { user } = this.props.location;
 
-	host = "http://localhost:3002/"
-	apiSaveUserData = "save-user-data";
-	apiLoadUserData = "get-user-data?user=";
-	apiCheckUserData = "check-user-data-exists?user=";
-	user = "defaultUser";
+		this.user = user;
+		this.host = "http://localhost:3002/"
+		this.apiSaveUserData = "save-user-data";
+		this.apiLoadUserData = "get-user-data?user=";
+		this.apiCheckUserData = "check-user-data-exists?user=";
 
-	state = {
-		userData: {
-			notes: []
+		this.state = {
+			userData: {
+				notes: []
+			}
 		}
 	}
 
 	componentDidMount() {
+		if (this.user === undefined) {
+			return;
+		}
 		this.loadUserData();
 		window.addEventListener("beforeunload", this.saveUserData);
 		window.componentHandler.upgradeDom();
@@ -87,28 +94,13 @@ export default class App extends Component {
 		});
 	}
 
-	checkUserData = () => {
-		let userDataExists = false;
-
-		fetch(this.host + this.apiCheckUserData + this.user, {
-			method: 'GET'
-		}).then((response) => {
-			userDataExists = response.status === 200
-		});
-
-		return userDataExists;
-	}
-
 	logout = () => {
 		this.saveUserData();
 		this.props.history.push('/');
 	}
 
 	render() {
-		const { params } = this.props.match;
-		this.user = params.user;
-
-		if (this.checkUserData()) {
+		if (this.user !== undefined) {
 			return (
 				<div>
 					<Header />
@@ -140,7 +132,8 @@ export default class App extends Component {
 				</div>
 			);
 		} else {
-			return(<Redirect to="/not-found"/>);
+			return <Redirect to="/not-found" />
 		}
+
 	}
 }

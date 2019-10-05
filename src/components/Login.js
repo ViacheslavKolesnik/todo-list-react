@@ -28,7 +28,10 @@ export default class Login extends Component {
     }
 
     login = (user) => {
-        this.props.history.push('/notebook/' + user);
+        this.props.history.push({
+            pathname: '/notebook',
+            user
+        });
     }
 
     render() {

@@ -19,3 +19,7 @@
 .nf-container h2 {
     font-size: 60px;
 }
+
+#back-to-login-page-button {
+    background-color: #0064e0
+}
