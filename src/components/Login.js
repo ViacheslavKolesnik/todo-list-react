@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import '../css/Login.css';
 import User from './User';
 
+import { Constants } from '../constants/constants';
+
 
 export default class Login extends Component {
 
-    host = "http://localhost:3002/"
-    apiGetUsers = "get-users";
+    constructor() {
+        super();
 
-    state = {
-        users: []
+        this.state = {
+            users: []
+        }
     }
 
 
@@ -18,7 +21,7 @@ export default class Login extends Component {
     }
 
     loadUsers = () => {
-        fetch(this.host + this.apiGetUsers, {
+        fetch(Constants.host + Constants.apiGetUsers, {
             method: 'GET'
         }).then((response) => {
             response.json().then(data => {
@@ -28,10 +31,8 @@ export default class Login extends Component {
     }
 
     login = (user) => {
-        this.props.history.push({
-            pathname: '/notebook',
-            user
-        });
+        this.user = localStorage.setItem(Constants.localStorageKey, user);
+        this.props.history.push('/notebook');
     }
 
     render() {

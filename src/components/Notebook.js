@@ -6,19 +6,16 @@ import Note from './Note';
 import Header from './Header';
 import Footer from './Footer';
 
+import { Constants } from '../constants/constants';
+
 import '../css/Notebook.css';
 
 export default class App extends Component {
 
-	constructor(props) {
-		super(props);
-		const { user } = this.props.location;
+	constructor() {
+		super();
 
-		this.user = user;
-		this.host = "http://localhost:3002/"
-		this.apiSaveUserData = "save-user-data";
-		this.apiLoadUserData = "get-user-data?user=";
-		this.apiCheckUserData = "check-user-data-exists?user=";
+		this.user = localStorage.getItem(Constants.localStorageKey);
 
 		this.state = {
 			userData: {
@@ -28,15 +25,20 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		if (this.user === undefined) {
+		if (this.user === null) {
 			return;
 		}
 		this.loadUserData();
-		window.addEventListener("beforeunload", this.saveUserData);
+
+		window.addEventListener("beforeunload", this.saveUserData)
+
 		window.componentHandler.upgradeDom();
 	}
 
 	componentWillUnMount() {
+		this.props.history.push({
+			user: this.user
+		});
 		window.removeEventListener("beforeunload", this.saveUserData)
 	}
 
@@ -73,7 +75,7 @@ export default class App extends Component {
 	}
 
 	saveUserData = () => {
-		fetch(this.host + this.apiSaveUserData, {
+		fetch(Constants.host + Constants.apiSaveUserData, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
@@ -85,7 +87,7 @@ export default class App extends Component {
 	}
 
 	loadUserData = () => {
-		fetch(this.host + this.apiLoadUserData + this.user, {
+		fetch(Constants.host + Constants.apiLoadUserData + this.user, {
 			method: 'GET'
 		}).then((response) => {
 			response.json().then(data => {
@@ -96,17 +98,18 @@ export default class App extends Component {
 
 	logout = () => {
 		this.saveUserData();
+		localStorage.removeItem(Constants.localStorageKey)
 		this.props.history.push('/');
 	}
 
 	render() {
-		if (this.user !== undefined) {
+		if (this.user !== null) {
 			return (
 				<div>
 					<Header />
 
 					<section className="note-creation mdl-layout">
-						<h3>Create new note here.</h3>
+						<h3>Create new note here</h3>
 						<CreateNote handleSubmit={this.addNote} />
 					</section>
 
@@ -116,7 +119,7 @@ export default class App extends Component {
 					</section>
 
 					<section className="notebook mdl-layout">
-						<h3>Your notes.</h3>
+						<h3>Your notes</h3>
 						<div className="notebook-container" id="notebook-container">
 							{this.state.userData.notes.map(
 								(note) => {
