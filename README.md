@@ -1,16 +1,15 @@
 # Notebook for whatever you want!
 
 ## Requirements
-  - nodejs(v8.10.0)
-  - gulp(v3.9.1)
+  - docker(18.09.7)
+  - docker-compose(1.18.0)
 
 ## Installation
-Install required packages:
-```
-sudo apt-get install nodejs=8.10.0~dfsg-2ubuntu0.4
-sudo apt-get install gulp=3.9.1-6
-```
-Then clone project, go into project directory in terminal and run: `npm install`.
+Install required packages.
+
+Then clone project.
 
 ## Running
-In project folder run following in terminal: `gulp`.
+Go to project root folder in terminal and run: `docker-compose up`.
+
+Note: ports 3001 and 3002 on your machine must not be in use.
