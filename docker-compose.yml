@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  server:
+    build: ./server
+    expose:
+      - 3002
+    ports:
+      - 3002:3002
+    volumes:
+      - ./server:/app/server
+    command: node index.js
+  client:
+    build: ./client
+    expose:
+      - 3000
+    ports:
+      - 3001:3000
+    volumes:
+      - ./client:/app/client
+    command: npm start
+    links:
+      - server
+    depends_on:
+      - server
