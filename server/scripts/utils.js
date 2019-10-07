@@ -1,11 +1,14 @@
 var Utils = {
     validateUserData: function (userData) {
-        return userData !== undefined &&
-            userData.name !== undefined &&
-            userData.email !== undefined &&
-            userData.email.includes('@') &&
+        return this.validateUser(userData) &&
             userData.notes !== undefined &&
             userData.notes instanceof Array;
+    },
+    validateUser: function (user) {
+        return user !== undefined &&
+            user.name !== undefined &&
+            user.email !== undefined &&
+            user.email.includes('@');
     },
 
     getFileName: function (userData) {

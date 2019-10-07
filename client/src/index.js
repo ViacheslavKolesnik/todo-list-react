@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Notebook from './components/Notebook';
 import Login from './components/Login';
-import NotFound from './components/NotFound'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import NotFound from './components/NotFound';
+import Registration from './components/Registration';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import './index.css';
 
@@ -12,6 +13,7 @@ const routing = (
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/notebook" component={Notebook} />
+      <Route exact path="/registration" component={Registration} />
       <Route path="/not-found" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

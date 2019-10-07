@@ -1,0 +1,9 @@
+.mdl-textfield {
+    width: 100%;
+}
+
+#register-button {
+    display: flex;
+    margin: 0 auto;
+    background-color: #4568ff;
+}

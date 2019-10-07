@@ -12,6 +12,12 @@ export default class User extends Component {
         let email = this.props.email;
         this.props.login(email.substring(0, email.indexOf('@')));
     }
+    
+    remove = (e) => {
+        e.stopPropagation();
+
+        this.props.remove(this.props.email);
+    }
 
     render() {
         return (
@@ -23,6 +29,9 @@ export default class User extends Component {
                     <p className="user">{this.props.name}</p>
                     <p className="email">{this.props.email}</p>
                 </div>
+                <button onClick={this.remove} className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored remove-user">
+                    <p>+</p>
+                </button>
             </div>
         )
     }

@@ -109,6 +109,47 @@ app.post('/save-user-data', (request, response) => {
     }
 })
 
+app.post('/save-user', (request, response) => {
+    let user = request.body.user;
+
+    if (Utils.validateUser(user)) {
+        try {
+            let userData = user;
+            user.notes = []
+
+            fs.writeFileSync(userFilePath.replace("{}", Utils.getFileName(userData)) + userFileExtension, JSON.stringify(userData), (err) => {
+                console.log(err);
+                response.status(500).send(err);
+            });
+
+            response.sendStatus(200);
+        } catch (err) {
+            console.log(err);
+            response.status(500).send(err);
+        }
+    } else {
+        console.log("Invalid user while saving.");
+        console.log(JSON.stringify(user));
+        response.sendStatus(400);
+    }
+})
+
+app.delete('/remove-user', (request, response) => {
+    let user = request.body.user;
+
+    try {
+        fs.unlinkSync(userFilePath.replace("{}", Utils.getFileName(user)) + userFileExtension, (err) => {
+            console.log(err);
+            response.status(500).send(err);
+        });
+
+        response.sendStatus(200);
+    } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+    }
+})
+
 app.listen(port, (err) => {
     if (err) {
         return console.log('Something bad happened', err);

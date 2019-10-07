@@ -57,6 +57,20 @@
     padding: 24px 0 0;
 }
 
+.register {
+    text-decoration: none;
+    font-size: 12px;
+    color: #9b9b9b;
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+.register:hover {
+    cursor: pointer;
+}
+
 .login-footer {
     display: flex;
     flex-direction: row;

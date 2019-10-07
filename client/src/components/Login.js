@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Login.css';
 import User from './User';
 
@@ -35,6 +36,22 @@ export default class Login extends Component {
         this.props.history.push('/notebook');
     }
 
+    removeUser = (email) => {
+		let users = this.state.users.filter(user => user.email !== email);
+
+        fetch(Constants.host + Constants.apiRemoveUser, {
+            method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user: {email}
+			})
+        }).then(
+            this.setState({ users })
+        ).catch(err => console.log(err));
+    }
+
     render() {
         return (
             <div className="login-bg">
@@ -56,9 +73,11 @@ export default class Login extends Component {
                                     name={user.name}
                                     email={user.email}
                                     login={this.login}
+                                    remove={this.removeUser}
                                 />
                             )}
                         </div>
+                        <Link to={'/registration'} className="register">Register</Link>
                     </div>
                     <footer className="login-footer">
                         <p className="language">Русский</p>
